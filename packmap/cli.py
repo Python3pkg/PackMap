@@ -82,14 +82,14 @@ class PackMapClient(object):
         graph = pydot.Dot(graph_type='digraph', splines='spline')
 
         # Create Package Nodes
-        for req_name, req in results.items():
+        for req_name, req in list(results.items()):
             node_name = '{0}\n{1}'.format(req_name, req.get('version'))
             node = pydot.Node(node_name, style="filled", fillcolor='#cccccc')
             graph.add_node(node)
             graph_items[req_name] = node
 
         # Create Relationships
-        for req_name, req in results.items():
+        for req_name, req in list(results.items()):
             main_node = graph_items.get(req_name)
 
             for sub_req in req.get('requirements'):
@@ -97,7 +97,7 @@ class PackMapClient(object):
                 edge = pydot.Edge(main_node, sub_node, arrowhead='vee')
                 graph.add_edge(edge)
 
-        print('Saving PDF Graph: {0}'.format(filename))
+        print(('Saving PDF Graph: {0}'.format(filename)))
         graph.write(filename, format='pdf')
 
     def run(self):

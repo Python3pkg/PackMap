@@ -30,7 +30,7 @@ class EnvironmentManager(object):
         self._python = 'python'
 
     def build(self):
-        print('Building Python Virtual Environment: {0}...'.format(self.uuid))
+        print(('Building Python Virtual Environment: {0}...'.format(self.uuid)))
         home_dir, lib_dir, inc_dir, bin_dir = venv.path_locations(
             self._env_path)
 
@@ -45,7 +45,7 @@ class EnvironmentManager(object):
         return self._python
 
     def clean_up(self):
-        print('Deleting environment: {uuid}'.format(uuid=self._uuid))
+        print(('Deleting environment: {uuid}'.format(uuid=self._uuid)))
         shutil.rmtree(self._env_path, ignore_errors=True)
 
     def install_package(self, package_name):
